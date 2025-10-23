@@ -38,9 +38,9 @@ Bu depo, CST Studio Suite kullanılarak tasarlanan, simüle edilen ve optimize e
 
 ## 📫 İletişim
 
-- **LinkedIn:** [Profil Linkiniz]
-- **E-posta:** email@adresiniz.com  
-- **GitHub:** [@kullaniciadiniz](https://github.com/kullaniciadiniz)
+- **LinkedIn:** [Utku Turan](https://www.linkedin.com/in/utku-turan/)
+- **E-posta:** utkuturan1994@gmail.com
+- **GitHub:** [utkuturan](https://github.com/utkuturan)
 
 ---
 
