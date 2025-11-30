@@ -21,22 +21,40 @@ Dielektrik malzeme olarak yaygın ve düşük maliyetli **FR-4 (Lossy)** kullan�
 
 ### 2. Genişlik Hesabı ($W$)
 Antenin ışıma verimliliğini artırmak için genişlik şu formülle hesaplanmıştır:
-$$W = \frac{c}{2f_r} \sqrt{\frac{2}{\epsilon_r + 1}} \approx 38.39 \text{ mm}$$
+
+$$
+W = \frac{c}{2f_r} \sqrt{\frac{2}{\epsilon_r + 1}} \approx 38.39 \text{ mm}
+$$
 
 ### 3. Efektif Dielektrik Sabiti ($\epsilon_{eff}$)
 Dalgalar hem FR-4 içinde hem de havada yayıldığı için ortalama bir dielektrik sabiti hesaplanmalıdır:
-$$\epsilon_{eff} = \frac{\epsilon_r + 1}{2} + \frac{\epsilon_r - 1}{2} \left[1 + 12\frac{h}{W}\right]^{-1/2}$$
+
+$$
+\epsilon_{eff} = \frac{\epsilon_r + 1}{2} + \frac{\epsilon_r - 1}{2} \left[1 + 12\frac{h}{W}\right]^{-1/2}
+$$
 
 ### 4. Uzunluk Hesabı ($L$)
 Kenarlardaki saçaklanma alanları (fringing fields - $\Delta L$) nedeniyle anten elektriksel olarak daha uzun görünür. Bu yüzden fiziksel boy kısaltılmıştır:
-$$L = L_{eff} - 2\Delta L \approx 29.78 \text{ mm (Teorik)}$$
+
+$$
+L = L_{eff} - 2\Delta L \approx 29.78 \text{ mm (Teorik)}
+$$
+
 *(CST optimizasyonu sonrası tam 2.40 GHz rezonans için **29.1 mm** olarak belirlenmiştir).*
 
 ### 5. Inset Feed Derinliği ($F_i$) - "Tatlı Nokta"
 Antenin kenarındaki yüksek empedansı (~300$\Omega$), besleme hattının $50\Omega$ empedansı ile eşlemek için yama içine bir yarık açılmıştır. Giriş mesafesi ($y_0$) Kosinüs-Kare kuralı ile bulunur:
-$$R_{in}(y_0) = R_{edge} \cos^2\left(\frac{\pi}{L} y_0\right)$$
+
+$$
+R_{in}(y_0) = R_{edge} \cos^2\left(\frac{\pi}{L} y_0\right)
+$$
+
 $50\Omega$ için çözüm:
-$$y_0 = \frac{L}{\pi} \arccos\left(\sqrt{\frac{50}{R_{edge}}}\right) \approx 10.93 \text{ mm (Teorik)}$$
+
+$$
+y_0 = \frac{L}{\pi} \arccos\left(\sqrt{\frac{50}{R_{edge}}}\right) \approx 10.93 \text{ mm (Teorik)}
+$$
+
 *(CST optimizasyonu sonrası -14.5 dB uyum için **8.5 mm** olarak belirlenmiştir).*
 
 ---
