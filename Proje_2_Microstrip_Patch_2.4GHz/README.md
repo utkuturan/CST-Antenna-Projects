@@ -1,72 +1,74 @@
-# 📡 2.4 GHz Microstrip Patch Antenna Design with Inset Feed
+# 📡 Inset Feed Beslemeli 2.4 GHz Mikroşerit Yama Anten Tasarımı
 
-This project demonstrates the design, calculation, and simulation of a rectangular Microstrip Patch Antenna operating at **2.4 GHz** (ISM Band) using **CST Studio Suite**.
+Bu proje, **CST Studio Suite** kullanılarak 2.4 GHz ISM bandı (Wi-Fi/IoT uygulamaları) için tasarlanmış dikdörtgen bir Mikroşerit Yama Antenin (Microstrip Patch Antenna) tasarımını, matematiksel hesaplamalarını ve simülasyon sonuçlarını içerir.
 
-The design utilizes the **Inset Feed** technique to achieve perfect impedance matching ($50\Omega$) without external matching networks.
+Tasarımda, harici bir empedans uydurma devresi kullanmadan tam $50\Omega$ uyumu sağlamak için **Inset Feed (Yarık Besleme)** tekniği kullanılmıştır.
 
-## 🎯 Project Goals
-* **Target Frequency:** 2.40 GHz (Wi-Fi / Bluetooth / IoT)
-* **Return Loss ($S_{11}$):** < -10 dB
-* **Gain:** > 6 dBi
-* **Impedance:** $50\Omega$
+## 🎯 Proje Hedefleri
+* **Hedef Frekans:** 2.40 GHz
+* **Geri Dönüş Kaybı ($S_{11}$):** < -10 dB
+* **Kazanç (Gain):** > 6 dBi
+* **Empedans:** $50\Omega$
 
-## 📐 Design Parameters & Mathematics
+## 📐 Tasarım Parametreleri ve Matematiksel Arka Plan
 
-The dimensions of the antenna were theoretically calculated using the **Transmission Line Model** and implemented via Python scripts.
+Antenin boyutları, **İletim Hattı Modeli (Transmission Line Model)** kullanılarak teorik olarak hesaplanmış, Python ile doğrulanmış ve CST Studio Suite üzerinde optimize edilmiştir.
 
-### 1. Substrate Properties
-We used **FR-4 (Lossy)** as the dielectric material.
-* Dielectric Constant ($\epsilon_r$): **4.3**
-* Height ($h$): **1.6 mm**
+### 1. Substrate (Taban) Özellikleri
+Dielektrik malzeme olarak yaygın ve düşük maliyetli **FR-4 (Lossy)** kullanılmıştır.
+* Dielektrik Sabiti ($\epsilon_r$): **4.3**
+* Yükseklik ($h$): **1.6 mm**
 
-### 2. Width Calculation ($W$)
-To achieve high efficiency, the width is calculated as:
+### 2. Genişlik Hesabı ($W$)
+Antenin ışıma verimliliğini artırmak için genişlik şu formülle hesaplanmıştır:
 $$W = \frac{c}{2f_r} \sqrt{\frac{2}{\epsilon_r + 1}} \approx 38.39 \text{ mm}$$
 
-### 3. Effective Dielectric Constant ($\epsilon_{eff}$)
-Since the waves travel partially in air and partially in the substrate, we calculate the effective permittivity:
+### 3. Efektif Dielektrik Sabiti ($\epsilon_{eff}$)
+Dalgalar hem FR-4 içinde hem de havada yayıldığı için ortalama bir dielektrik sabiti hesaplanmalıdır:
 $$\epsilon_{eff} = \frac{\epsilon_r + 1}{2} + \frac{\epsilon_r - 1}{2} \left[1 + 12\frac{h}{W}\right]^{-1/2}$$
 
-### 4. Length Calculation ($L$)
-The physical length is slightly shorter than $\lambda/2$ due to the **fringing fields** ($\Delta L$):
-$$L = L_{eff} - 2\Delta L \approx 29.78 \text{ mm (Theoretical)}$$
-*(Optimized to **29.1 mm** in CST for exact 2.40 GHz resonance)*
+### 4. Uzunluk Hesabı ($L$)
+Kenarlardaki saçaklanma alanları (fringing fields - $\Delta L$) nedeniyle anten elektriksel olarak daha uzun görünür. Bu yüzden fiziksel boy kısaltılmıştır:
+$$L = L_{eff} - 2\Delta L \approx 29.78 \text{ mm (Teorik)}$$
+*(CST optimizasyonu sonrası tam 2.40 GHz rezonans için **29.1 mm** olarak belirlenmiştir).*
 
-### 5. Inset Feed Depth ($F_i$) - The "Sweet Spot"
-To match the high edge impedance (~300$\Omega$) to the 50$\Omega$ feed line, we cut a notch into the patch. The depth $y_0$ is found using the cosine-squared rule:
+### 5. Inset Feed Derinliği ($F_i$) - "Tatlı Nokta"
+Antenin kenarındaki yüksek empedansı (~300$\Omega$), besleme hattının $50\Omega$ empedansı ile eşlemek için yama içine bir yarık açılmıştır. Giriş mesafesi ($y_0$) Kosinüs-Kare kuralı ile bulunur:
 $$R_{in}(y_0) = R_{edge} \cos^2\left(\frac{\pi}{L} y_0\right)$$
-Solving for $50\Omega$:
-$$y_0 = \frac{L}{\pi} \arccos\left(\sqrt{\frac{50}{R_{edge}}}\right) \approx 10.93 \text{ mm (Theoretical)}$$
-*(Optimized to **8.5 mm** in CST for -14.5 dB Return Loss)*
+$50\Omega$ için çözüm:
+$$y_0 = \frac{L}{\pi} \arccos\left(\sqrt{\frac{50}{R_{edge}}}\right) \approx 10.93 \text{ mm (Teorik)}$$
+*(CST optimizasyonu sonrası -14.5 dB uyum için **8.5 mm** olarak belirlenmiştir).*
 
 ---
 
-## 🛠️ Simulation Results (CST Studio Suite)
+## 🛠️ Simülasyon Sonuçları (CST Studio Suite)
 
-### 1. Return Loss ($S_{11}$)
-The antenna shows a deep resonance at **2.403 GHz** with a return loss of **-14.5 dB**. This indicates that 96% of the power is transmitted, with only 4% reflection.
+### 1. Geri Dönüş Kaybı ($S_{11}$)
+Anten, **2.403 GHz** frekansında mükemmel rezonansa girmiş ve **-14.5 dB** geri dönüş kaybı sağlamıştır. Bu, gücün %96'sının iletildiğini, sadece %4'ünün geri yansıdığını gösterir.
 
-![S11 Graph](S11_Parameter.png)
-*(Fig 1: S-Parameter Magnitude in dB)*
+![S11 Grafiği](S11_Parameter.png)
+*(Şekil 1: dB cinsinden S-Parametre Genliği)*
 
-### 2. 3D Radiation Pattern (Farfield)
-The antenna exhibits a directional radiation pattern with a main lobe magnitude of **6.33 dBi**, directed towards the Z-axis (broadside).
+### 2. 3D Işıma Deseni (Farfield)
+* **Yönlülük (Directivity):** 6.33 dBi
+* **Ana Işıma Yönü:** Z-ekseni (Kartın karşısına doğru)
+* **Desen:** Yönlü (Directional) ışıma karakteristiği.
 
-![Radiation Pattern](3D_Radiation_Pattern.png)
-*(Fig 2: 3D Farfield Radiation Pattern showing directivity)*
+![Işıma Deseni](3D_Radiation_Pattern.png)
+*(Şekil 2: Yönlülüğü gösteren 3D Uzak Alan Deseni)*
 
-### 3. Antenna Structure
-The final geometry includes the optimized Inset Feed gap to ensure $50\Omega$ matching.
+### 3. Anten Yapısı
+$50\Omega$ uyumu için optimize edilmiş Inset Feed yapısı ve besleme hattı.
 
-![Structure](Antenna_Structure.png)
-
----
-
-## 📂 How to Run
-1. Open `Microstrip_Patch_2_4GHz.cst` in CST Studio Suite.
-2. Check the **Parameter List** for optimized values ($L=29.1$, $Fi=8.5$).
-3. Run the **Time Domain Solver**.
+![Anten Yapısı](Antenna_Structure.png)
 
 ---
-*Author: Utku Turan*
-*Tools: CST Studio Suite 2024, Python*
+
+## 📂 Nasıl Çalıştırılır?
+1. `CST_Proje_2_Patch.cst` dosyasını CST Studio Suite ile açın.
+2. **Parameter List** kısmından optimize değerleri kontrol edin ($L=29.1$, $Fi=8.5$).
+3. **Time Domain Solver**'ı başlatın.
+
+---
+*Yazar: Utku Turan*
+*Araçlar: CST Studio Suite 2025, Python*
