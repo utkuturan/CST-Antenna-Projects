@@ -15,7 +15,8 @@ Bu depo, CST Studio Suite kullanılarak tasarlanan, simüle edilen ve optimize e
 **Tarih:** 23 Ekim 2025  
 **Özet:** 1 GHz hedef frekansı için temel bir yarım dalga dipol anten tasarımı ve optimizasyonu.  
 **Klasör:** [`Proje_1_Dipol_1GHz/`](Proje_1_Dipol_1GHz)  
-**Sonuçlar:** - S11 parametresi: -25 dB @ 1 GHz
+**Sonuçlar:**
+- S11 parametresi: -25 dB @ 1 GHz
 - Kazanç: 2.15 dBi
 - Verimlilik: >95%
 
@@ -54,8 +55,11 @@ Bu depo, CST Studio Suite kullanılarak tasarlanan, simüle edilen ve optimize e
 - S11 (Return Loss): **< -15 dB**
 - Işıma Deseni: Yüksek kazançlı, daraltılmış ana huzme.
 
-![Array 3D](Proje_3_Array_Antenna_2.4GHz/3D_Pattern_Overlay.png)
-![Array Structure](Proje_3_Array_Antenna_2.4GHz/Array_Structure.png)
+![Array 3D Overlay](Proje_3_Array_Antenna_2.4GHz/3D_Pattern_Overlay.png)
+*(Şekil: T-Junction Besleme Ağı üzerinde 3D Işıma Deseni Görünümü)*
+
+![Array S11](Proje_3_Array_Antenna_2.4GHz/S11_Graph.png)
+*(Şekil: 2.4 GHz'de mükemmel uyumu gösteren S11 Grafiği)*
 
 ---
 
